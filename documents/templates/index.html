@@ -64,9 +64,7 @@
               <li><a class="dropdown-item" href="#">Настройки</a></li>
               <li><a class="dropdown-item" href="#">Профиль</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'signup' %}">Зарегистрироваться</a> </li>
-              <li><a class="dropdown-item" href="{% url 'login' %}">Войти</a> </li>
-              <li><a class="dropdown-item" href="#">Выйти</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}?next={% url 'login' %}">Выйти</a></li>
             </ul>
           </div>
           <!-- ./dropdown -->
@@ -102,7 +100,7 @@
 
           <h2 class="text-dark">Все документы</h2>
 
-          <form action="{% url "my_view" %}" method="post" enctype="multipart/form-data" class="d-flex btn-group" style="margin-bottom: 15px; height: 38px;">
+          <form action="{% url "index" %}" method="post" enctype="multipart/form-data" class="d-flex btn-group" style="margin-bottom: 15px; height: 38px;">
             {% csrf_token %}
             <p>{{ form.non_field_errors }}</p>
 
