@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-$q=6q)zl1(j&t2(@)$b&$wak^z*h1u0p&3k-#50tjyhoqduvc&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,12 +77,24 @@ WSGI_APPLICATION = 'kvantorium_dms.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'develop',
+            'USER': 'dev',
+            'PASSWORD': 'hackteam2020',
+            'HOST': 'postgres',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
@@ -123,10 +135,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 LOGIN_URL = "/auth/login/"
 LOGIN_REDIRECT_URL = "index"
+
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
 
