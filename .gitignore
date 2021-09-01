@@ -6,6 +6,9 @@ __pycache__/
 .idea/
 .vscode/
 
+/media
+/static
+
 # C extensions
 *.so
 
