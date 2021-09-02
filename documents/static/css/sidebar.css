@@ -79,12 +79,15 @@ body {
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
 
-  .sidebar {
-    min-height: 100vh;
+  @media (min-width: 576px) {
+    .sidebar {
+      min-height: 100vh;
+    }
   }
 
-  @media (max-width: 576px) {
-    .sidebar {
-      min-height: none;
+  @media (min-width: 320px) and (max-width: 575px) {
+    .hide-mobile {
+      display: block;
+      display: none;
     }
   }

@@ -58,5 +58,11 @@ class Document(AbstractModel):
     def get_absolute_url(self):
         return reverse('documents:document_detail', args=[str(self.id)])
 
+    # переопределяем метод delete для удаления документа из файловой системы после удаления объекта модели
+    def delete(self, *args, **kwargs):
+        self.docfile.delete()
+        super(Document, self).delete(*args, **kwargs)
+
     class Meta:
         ordering = ['-mod_date']
+
